@@ -1,0 +1,61 @@
+package classTest;
+
+import java.util.Scanner;
+
+public class RankGame {
+	final static int SUBJECT_COUNT = 3;
+	private String name; //이름
+	private int kor; //국어점수
+	private int math; //수학 점수
+	private int eng; //영어 점수
+	private int sum; //총 합계
+	private double avg;//평균 
+	private int rank;//순위
+	
+	void set_name(String name) //이름 
+	{
+		this.name = name;
+	}
+	void set_kor(int kor) { //국어 점수
+		this.kor = kor;
+	}
+	void set_math(int math) {//수학 점수
+		this.math = math;
+	}
+	void set_eng(int eng) {//영어 점수
+		this.eng = eng;
+	}
+	void set_sum() { //합계
+		this.sum = kor+math+eng;
+	}
+	void set_avg() { //평균
+		this.avg = sum/(float)SUBJECT_COUNT;
+	}
+	void set_Person(int i) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print((i+1)+"번째 학생 이름>");
+		set_name(sc.next());
+		System.out.print("국어 점수>");
+		set_kor(sc.nextInt());
+		System.out.print("수학 점수>");
+		set_math(sc.nextInt());
+		System.out.print("영어 점수>");
+		set_eng(sc.nextInt());
+		set_sum(); //합계
+		set_avg(); //평균
+		sc.close();
+	}
+	void get_Person() { // 학생 데이터 출력
+		System.out.printf("학생 이름:%s 국어 점수:%d 수학 점수:%d 영어 점수:%d 합계 :%d 평균:%5.2f 순위:%d\n",name,kor,math,eng,sum,avg,rank);
+	}
+	static void rank_count(RankGame r[]) { //rank 순위
+		for(int i =0; i<r.length; i++) {
+			r[i].rank = 1;
+		}
+		for(int i=0; i<r.length; i++) {
+			for(int j=0; j<r.length; j++) {
+				if(r[i].avg > r[j].avg) r[j].rank++;
+			}
+		}
+	}
+}
