@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="boxes">
+       <input type="button" id="btn1" value="추가">
+       <input type="button" id="btn2" value="삭제"><br><br>
+       <div class="box">
+           <input type="file" name="file1">
+       </div>
+       <div  class="box">
+           <input type="file" name="file1">
+       </div>
+    </div>
+    
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script> <script>
+        $(function(){
+            var boxcnt=2;
+            $("#btn1").click(function(){
+                boxcnt++;
+                var box = $("<div class='box'><input type='file' name='file'"+boxcnt+"</div>");
+                $(".boxes").append(box);
+            });
+            $("#btn2").click(function(){
+                if(boxcnt>2){
+                    boxcnt--;
+                    $(".box").eq(boxcnt).remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
